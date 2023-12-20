@@ -11,8 +11,8 @@ const Benifit = () => {
   return (
     <div className="space-y-20">
       <SectionTitle heading={"Our Users"}></SectionTitle>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-20">
-        <div className="card w-96 bg-[#A367B1] shadow-xl text-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-20 p-3">
+        <div className="card  bg-[#A367B1] shadow-xl text-center">
           <figure className="mt-10 text-2xl">
             <MdDeveloperMode />
           </figure>
@@ -24,7 +24,7 @@ const Benifit = () => {
             </p>
           </div>
         </div>
-        <div className="card w-96 bg-[#A367B1] shadow-xl">
+        <div className="card  bg-[#A367B1] shadow-xl">
           <figure className="mt-10 text-2xl">
             <MdCorporateFare />
           </figure>
@@ -38,7 +38,7 @@ const Benifit = () => {
             </p>
           </div>
         </div>
-        <div className="card w-96 bg-[#A367B1] shadow-xl">
+        <div className="card  bg-[#A367B1] shadow-xl">
           <figure className="mt-10 text-2xl">
             <GiBank />
           </figure>
@@ -52,7 +52,7 @@ const Benifit = () => {
             </p>
           </div>
         </div>
-        <div className="card w-96 bg-[#A367B1] shadow-xl">
+        <div className="card  bg-[#A367B1] shadow-xl">
           <figure className="mt-10 text-2xl">
             <SiGooglemarketingplatform />
           </figure>
@@ -64,7 +64,7 @@ const Benifit = () => {
             </p>
           </div>
         </div>
-        <div className="card w-96 bg-[#A367B1] shadow-xl">
+        <div className="card  bg-[#A367B1] shadow-xl">
           <figure className="mt-10 text-2xl">
             <FcManager />
           </figure>
@@ -76,7 +76,7 @@ const Benifit = () => {
             </p>
           </div>
         </div>
-        <div className="card w-96 bg-[#A367B1] shadow-xl">
+        <div className="card  bg-[#A367B1] shadow-xl">
           <figure className="mt-10 text-2xl">
             <GrUserManager />
           </figure>
