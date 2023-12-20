@@ -1,5 +1,5 @@
-// @ts-nocheck
 /* eslint-disable react/prop-types */
+// @ts-nocheck
 const SectionTitle = ({ heading }) => {
   return (
     <div className="text-center my-20">
