@@ -64,6 +64,16 @@ const Navbar = () => {
                   >
                     Dashboard
                   </NavLink>
+                  <NavLink
+                    to="about"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "btn btn-outline bg-[#392467] text-white btn-sm"
+                        : "btn btn-ghost btn-sm"
+                    }
+                  >
+                    About
+                  </NavLink>
 
                   <div
                     onClick={handleLogOut}
@@ -94,6 +104,16 @@ const Navbar = () => {
                     }
                   >
                     Dashboard
+                  </NavLink>
+                  <NavLink
+                    to="about"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
+                        : "btn btn-ghost btn-sm"
+                    }
+                  >
+                    About
                   </NavLink>
 
                   <NavLink
@@ -137,6 +157,16 @@ const Navbar = () => {
               }
             >
               Dashboard
+            </NavLink>
+            <NavLink
+              to="about"
+              className={({ isActive }) =>
+                isActive
+                  ? "btn btn-outline bg-[#5D3587] text-white btn-sm"
+                  : "btn btn-ghost btn-sm"
+              }
+            >
+              About
             </NavLink>
           </ul>
         </div>

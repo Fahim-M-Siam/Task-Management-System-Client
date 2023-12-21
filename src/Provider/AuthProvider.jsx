@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Config/Firebase.Config";
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -13,6 +14,7 @@ import {
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
@@ -21,6 +23,12 @@ const AuthProvider = ({ children }) => {
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
+  };
+
+  // github login
+  const githubLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
   };
 
   // sign up
@@ -55,6 +63,7 @@ const AuthProvider = ({ children }) => {
 
   const authentications = {
     googleLogin,
+    githubLogin,
     createUser,
     signIn,
     logOut,

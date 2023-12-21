@@ -21,7 +21,7 @@ const Banner = () => {
               innovation meets productivity. Get started today and experience a
               brighter, more organized future for your projects.
             </p>
-            <Link to="/dashboard">
+            <Link to="/dashboard/manageTask">
               <button className="btn btn-outline bg-[#392467] text-white">
                 Let’s Explore
               </button>
