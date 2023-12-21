@@ -4,11 +4,34 @@ import Completed from "../../../Components/Completed/Completed";
 import Ongoing from "../../../Components/Ongoing/Ongoing";
 import TODO from "../../../Components/TODO/TODO";
 import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const ManageTask = () => {
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const axiosPublic = useAxiosPublic();
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    const toastId = toast.loading("Adding the task..");
+
+    const taskData = {
+      email: user?.email,
+      title: data?.title,
+      description: data?.description,
+      date: parseInt(data?.date),
+      priority: data?.priority,
+      status: "todo",
+    };
+
+    axiosPublic.post("/tasks", taskData).then((res) => {
+      if (res?.data) {
+        toast.success("Task Has been Succesfully Added", { id: toastId });
+        reset();
+      } else {
+        toast.error("Unable to add the task", { id: toastId });
+      }
+    });
+  };
 
   return (
     <div className="-mt-12">
@@ -49,7 +72,7 @@ const ManageTask = () => {
                         name="title"
                         className="input input-bordered"
                         placeholder="Title"
-                        {...register("title")}
+                        {...register("title", { required: true })}
                       />
                     </div>
                     <div className="form-control">
@@ -61,7 +84,7 @@ const ManageTask = () => {
                         name="description"
                         className="textarea textarea-bordered"
                         placeholder="Description"
-                        {...register("description")}
+                        {...register("description", { required: true })}
                       />
                     </div>
                     <div className="form-control">
@@ -73,7 +96,7 @@ const ManageTask = () => {
                         name="date"
                         className="input input-bordered"
                         placeholder="Deadline"
-                        {...register("date")}
+                        {...register("date", { required: true })}
                       />
                     </div>
                     <div className="form-control">
@@ -83,7 +106,7 @@ const ManageTask = () => {
                       <select
                         name="priority"
                         className="select select-bordered w-full max-w-xs"
-                        {...register("priority")}
+                        {...register("priority", { required: true })}
                       >
                         <option disabled selected>
                           Select Your Priority Level
