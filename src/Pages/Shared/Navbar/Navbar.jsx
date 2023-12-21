@@ -55,7 +55,7 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink
-                    to="/dashboard"
+                    to="dashboard/manageTask"
                     className={({ isActive }) =>
                       isActive
                         ? "btn btn-outline bg-[#392467] text-white btn-sm"
@@ -86,7 +86,7 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink
-                    to="/dashboard"
+                    to="/dashboard/manageTask"
                     className={({ isActive }) =>
                       isActive
                         ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
@@ -129,7 +129,7 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/dashboad"
+              to="/dashboard/manageTask"
               className={({ isActive }) =>
                 isActive
                   ? "btn btn-outline bg-[#5D3587] text-white btn-sm"
@@ -160,7 +160,7 @@ const Navbar = () => {
                   {user.displayName}
                 </NavLink>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard/manageTask"
                   className="px-4 py-2 hover-bg-base-300 rounded-lg"
                 >
                   Dashboard
