@@ -6,11 +6,13 @@ import TODO from "../../../Components/TODO/TODO";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import useGetTask from "../../../Hooks/useGetTask";
 
 const ManageTask = () => {
   const { user } = useAuth();
+  const [task, refetch] = useGetTask();
   const axiosPublic = useAxiosPublic();
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const toastId = toast.loading("Adding the task..");
 
@@ -18,7 +20,7 @@ const ManageTask = () => {
       email: user?.email,
       title: data?.title,
       description: data?.description,
-      date: parseInt(data?.date),
+      date: data?.date,
       priority: data?.priority,
       status: "todo",
     };
@@ -26,7 +28,7 @@ const ManageTask = () => {
     axiosPublic.post("/tasks", taskData).then((res) => {
       if (res?.data) {
         toast.success("Task Has been Succesfully Added", { id: toastId });
-        reset();
+        refetch();
       } else {
         toast.error("Unable to add the task", { id: toastId });
       }
@@ -46,9 +48,7 @@ const ManageTask = () => {
         </label>
       </div>
       <div className="max-w-7xl mx-auto flex justify-between mt-10">
-        <h2 className="text-3xl">Total Tasks: 10</h2>
-        <h2 className="text-3xl">Ongoing Tasks: 10</h2>
-        <h2 className="text-3xl">Completed Tasks: 10</h2>
+        <h2 className="text-3xl">Total Tasks: {task?.length}</h2>
         {/* You can open the modal using document.getElementById('ID').showModal() method */}
         <button
           className="btn btn-outline btn-sm bg-[#5D3587] text-white"
