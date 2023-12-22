@@ -2,7 +2,6 @@
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SectionTitle from "../SectionTitle/SectionTitle";
-import { MdDelete } from "react-icons/md";
 import useAuth from "../../Hooks/useAuth";
 import { useEffect, useState } from "react";
 
@@ -51,7 +50,6 @@ const Ongoing = () => {
               <th>Priority</th>
               <th>Status</th>
               <th>Completed</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -71,12 +69,7 @@ const Ongoing = () => {
                     onClick={() => handleCompleted(item?._id)}
                     className="btn btn-outline bg-[#5D3587] btn-sm text-white"
                   >
-                    Completed
-                  </button>
-                </th>
-                <th>
-                  <button className="btn btn-outline bg-[#5D3587] btn-sm text-white">
-                    <MdDelete />
+                    Complete
                   </button>
                 </th>
               </tr>

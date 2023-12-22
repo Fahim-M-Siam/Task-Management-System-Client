@@ -7,17 +7,20 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import useGetTask from "../../Hooks/useGetTask";
 
 const TODO = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const [refetch] = useGetTask();
   const [tasks, setTasks] = useState(null);
 
   useEffect(() => {
     axiosPublic.get(`/tasks?email=${user?.email}&status=todo`).then((res) => {
       setTasks(res?.data);
     });
-  }, [axiosPublic, user?.email]);
+  }, [axiosPublic, user?.email, refetch]);
 
   // updating status to ongoing
   const handleOngoing = (_id) => {
@@ -37,7 +40,7 @@ const TODO = () => {
       });
   };
 
-  // updating status to ongoing
+  // updating status to completed
   const handleCompleted = (_id) => {
     const status = "completed";
     const update = {
@@ -53,6 +56,32 @@ const TODO = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // delete task
+  const handleDeleteTask = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.delete(`/tasks/${item?._id}`);
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            title: "Deleted!",
+            text: `Your ${item?.title} has been deleted.`,
+            icon: "success",
+          });
+          const remaining = tasks?.filter((task) => task?._id !== item?._id);
+          setTasks(remaining);
+        }
+      }
+    });
   };
   return (
     <div>
@@ -112,7 +141,10 @@ const TODO = () => {
                   </button>
                 </th>
                 <th>
-                  <button className="btn btn-outline bg-[#5D3587] btn-sm text-white">
+                  <button
+                    onClick={() => handleDeleteTask(item)}
+                    className="btn btn-outline bg-[#5D3587] btn-sm text-white"
+                  >
                     <MdDelete />
                   </button>
                 </th>

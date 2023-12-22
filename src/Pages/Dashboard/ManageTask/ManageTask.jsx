@@ -27,8 +27,8 @@ const ManageTask = () => {
 
     axiosPublic.post("/tasks", taskData).then((res) => {
       if (res?.data) {
-        toast.success("Task Has been Succesfully Added", { id: toastId });
         refetch();
+        toast.success("Task Has been Succesfully Added", { id: toastId });
       } else {
         toast.error("Unable to add the task", { id: toastId });
       }
