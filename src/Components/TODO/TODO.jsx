@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 // @ts-nocheck
 import { MdDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
@@ -9,6 +8,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useGetTask from "../../Hooks/useGetTask";
+import Modal from "../Modal/Modal";
 
 const TODO = () => {
   const { user } = useAuth();
@@ -133,12 +133,7 @@ const TODO = () => {
                   </button>
                 </th>
                 <th>
-                  <button
-                    onClick={() => handleOngoing(item?._id)}
-                    className="btn btn-outline bg-[#5D3587] btn-sm text-white"
-                  >
-                    <FaEdit />
-                  </button>
+                  <Modal index={index + 1} item={item}></Modal>
                 </th>
                 <th>
                   <button
