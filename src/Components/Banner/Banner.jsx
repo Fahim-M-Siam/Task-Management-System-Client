@@ -2,13 +2,19 @@
 // @ts-nocheck
 import { Link } from "react-router-dom";
 import "./banner.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Banner = () => {
+  useEffect(() => {
+    AOS.init({ duration: "1000" });
+  }, []);
   return (
     <div className="hero bg-base-200 h-[500px] banner mb-20 ">
       <div className="overlay">
         <div className="hero-content text-center">
-          <div className="max-w-md">
+          <div className="max-w-md" data-aos="flip-left">
             <h1 className="text-3xl font-bold text-white mt-16">
               Unleash Team Potential with SCC Technovision Inc.
             </h1>

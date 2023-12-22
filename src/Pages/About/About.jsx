@@ -1,19 +1,26 @@
 /* eslint-disable react/no-unescaped-entities */
 // @ts-nocheck
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 const About = () => {
+  useEffect(() => {
+    AOS.init({ duration: "1000" });
+  }, []);
   return (
     <div className="hero min-h-screen bg-[#5D3587]">
       <div className="hero-content flex-col lg:flex-row">
         <img
           src="/Images/about.png"
-          className="max-w-sm rounded-lg shadow-2xl"
+          className="max-w-full md:max-w-sm lg:max-w-sm rounded-lg shadow-2xl"
+          data-aos="flip-left"
         />
         <div>
-          <h1 className="text-5xl font-bold text-white">
+          <h1 className="text-5xl font-bold text-white" data-aos="zoom-in">
             Innovating Excellence, Crafting Solutions: Discover the SCC
             Technovision Inc Story
           </h1>
-          <p className="py-6 text-white">
+          <p className="py-6 text-white" data-aos="zoom-in-down">
             Welcome to SCC Technovision Inc, where our commitment to innovation
             and excellence is at the heart of everything we do. Established with
             a vision to redefine industry standards, we embark on a journey
@@ -41,7 +48,10 @@ const About = () => {
             Inc journey—a story of innovation, collaboration, and a relentless
             pursuit of excellence.
           </p>
-          <button className="btn btn-outline bg-[#392467] text-white">
+          <button
+            className="btn btn-outline bg-[#392467] text-white"
+            data-aos="zoom-in-right"
+          >
             Let's Explore
           </button>
         </div>
