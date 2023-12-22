@@ -133,7 +133,11 @@ const TODO = () => {
                   </button>
                 </th>
                 <th>
-                  <Modal index={index + 1} item={item}></Modal>
+                  <Modal
+                    index={index + 1}
+                    item={item}
+                    refetch={refetch}
+                  ></Modal>
                 </th>
                 <th>
                   <button

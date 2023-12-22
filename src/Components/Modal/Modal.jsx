@@ -2,11 +2,37 @@
 // @ts-nocheck
 import { useForm } from "react-hook-form";
 import { FaEdit } from "react-icons/fa";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
-const Modal = ({ index, item }) => {
+const Modal = ({ index, item, refetch }) => {
+  const axiosPublic = useAxiosPublic();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data.title);
+    const toastId = toast.loading("Updating the task data..");
+    const updatedTaskData = {
+      email: item?.email,
+      title: data?.title,
+      description: data?.description,
+      date: data?.date,
+      priority: data?.priority,
+      status: "todo",
+    };
+
+    axiosPublic
+      .patch(`/tasks/${item?._id}`, updatedTaskData)
+      .then((res) => {
+        const data = res?.data;
+        if (data.modifiedCount > 0) {
+          toast.success("Task Has been Succesfully Updated", { id: toastId });
+          refetch();
+        } else {
+          toast.error(data.message, { id: toastId });
+        }
+      })
+      .catch((error) => {
+        console.log("Unable to Update the task", error, { id: toastId });
+      });
   };
   return (
     <div>
